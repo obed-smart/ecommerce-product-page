@@ -2,12 +2,96 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="icon" type="image/svg+xml" href="/images/favicon-32x32.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite App</title>
+    <title>ecommerce-product-page</title>
   </head>
   <body>
-    <div id="app"></div>
+    <header class="main-header">
+      <img src="./images/icon-menu.svg" alt="icon-menu" class="menu-bar" aria-controls="nav-links" data-visible="false" aria-labelledby="nav-label">
+      <span id="nav-label" hidden>Navigation</span>
+      <h1 role="banner">sneakers</h1>
+      <nav class="nav__bar">
+        <ul class="nav-links" data-visible="false" id="nav-links">
+          <li><a href="#">Collections</a></li>
+          <li><a href="#"> Men</a></li>
+          <li><a href="#">Women</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Contact </a></li>
+        </ul>
+      </nav>
+      <div class="action-button">
+        <div class="action-cart">
+          <img src="./images/icon-cart.svg" alt="icon-cart" class="cart-icon">
+          <span class="cart-notify">0</span>
+        </div>
+        <img src="./images/image-avatar.png" alt="">
+        
+        <div class="cart-card">
+          <div class="cart">
+            <h2>Cart</h2>
+          </div>
+          <ul class="cart-products"></ul>
+          <p class="cart-massage">Your cart is empty</p>
+        </div>
+      </div>
+    </header>
+    <main>
+      <div class="product-image">
+        <div class="product-page-review">
+          <span class="back-btn"></span>
+          <span class="next-btn"></span>
+          <img src="./images/image-product-1.jpg" alt="product-image-review" class="product-review">
+        </div>
+        <div class="product-gallery">
+          <div class=" thumbnail-container active-thumbnail">
+            <img src="./images/image-product-1-thumbnail.jpg" alt="image-product-1-thumbnail" class="product-thumbnail"
+              data-image="./images/image-product-1.jpg">
+          </div>
+          <div class="thumbnail-container">
+            <img src="./images/image-product-2-thumbnail.jpg" alt="image-product-2-thumbnail" class="product-thumbnail"
+              data-image="./images/image-product-2.jpg">
+          </div>
+          <div class="thumbnail-container">
+            <img src="./images/image-product-3-thumbnail.jpg" alt="image-product-3-thumbnail" class="product-thumbnail"
+              data-image="./images/image-product-3.jpg">
+          </div>
+          <div class="thumbnail-container">
+            <img src="./images/image-product-4-thumbnail.jpg" alt="image-product-4-thumbnail" class="product-thumbnail"
+              data-image="./images/image-product-4.jpg">
+          </div>
+        </div>
+      </div>
+  
+  
+      <!-- create a popout review -->
+  
+      <div class="product-image-pop hide-image-pop"></div>
+  
+      <div class="product-description">
+        <h4>Sneaker Company</h4>
+        <h1 id="product-name">Fall Limited Edition Sneakers</h1>
+        <p>These low-profile sneakers are your perfect casual wear companion. Featuring a
+          durable rubber outer sole, they’ll withstand everything the weather can offer.</p>
+       <div class="product-price">
+        <h1 id="product-price">$125.00</h1>
+        <span> 50%</span>
+        <p> $250.00</p>
+       </div>
+        <div class="action-container">
+          <div class="product-quantity">
+            <img src="./images/icon-minus.svg" alt="icon-minus" class="quantity-button" data-action="decrement">
+            <p id="quantity"></p>
+            <img src="./images/icon-plus.svg" alt="icon-plus" class="quantity-button" data-action="increment">
+          </div>
+          <button class="cart-btn"> Add to cart</button>
+        </div>
+      </div>
+      <!-- <div class="attribution">
+        Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.
+        Coded by <a href="#"><smart class="code"></smart></a>.
+      </div> -->
+    </main>
     <script type="module" src="/main.js"></script>
   </body>
 </html>
