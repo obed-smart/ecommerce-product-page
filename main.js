@@ -300,9 +300,9 @@ const createClone = () => {
 }
 // check if ismobile view before creating clone
 
-const isMobile = window.innerWidth <= 768;
+const isMobile = window.innerWidth > 768;
 
-if (!isMobile) {
+if (isMobile) {
     productGallery.addEventListener("click", createClone);
 }
 
