@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+
+  <title>Frontend Mentor | E-commerce product page</title>
+  <link rel="stylesheet" href="output.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@100..900&display=swap" rel="stylesheet">
+
+</head>
+
+<body class="bg-customwhite [&:has(.open)]:overflow-hidden ">
+  <header class="lg:px-10 px-5">
+    <nav class="flex justify-between lg:py-6 py-3 border-b-2 items-center max-w-[1150px] mx-auto">
+      <div id="menu" class="flex justify-between group  items-center gap-[8rem]">
+        <div
+          class="absolute inset-0 hidden bg-blackOpacity   transition-all duration-300  group-[&:where(.open)]:block bg-opacity-65 z-10">
+        </div>
+        <div class="flex items-center justify-center gap-6">
+          <button id="open-menu" class="lg:hidden openmenu cursor-pointer">
+            <img src="../images/icon-menu.svg" alt="" class="w-6">
+          </button>
+          <a href="#">
+            <img id="#" src="../images/logo.svg" alt="logo" class="cursor-pointer">
+          </a>
+        </div>
+        <div
+          class="absolute lg:static bg-customwhite lg:bg-transparent p-6 lg:p-0 transition-all duration-700  top-0  lg:translate-x-0 invisible pointer-events-none group-[&:where(.open)]:visible group-[&:where(.open)]:pointer-events-auto translate-x-[-100%] lg:visible lg:pointer-events-auto group-[&:where(.open)]:translate-x-0 left-0 w-64  h-full z-40">
+
+          <button id="close-menu" class="mb-10 lg:hidden">
+            <!-- <img src="../images/icon-close.svg" alt="close icon" class="cursor-pointer w-5"> -->
+
+            <svg width="19" height="25">
+              <use href="../images/icon-close.svg#close"></use>
+            </svg>
+          </button>
+          <ul
+            class="flex flex-col lg:flex-row lg:[&>li]:text-xl [&>li]:text-[20px]  [&>li]:text-veryDarkBlue lg:[&>li]:text-darkGrayishBlue [&>li]:font-medium lg:[&>li]:font-normal    gap-4  [&>li]:cursor-pointer">
+            <li
+              class="hover:text-veryDarkBlue relative lg:after:bg-customOrange   transition-all uration-300 nav-list  hover:after:w-full ">
+              Collections</li>
+            <li
+              class="hover:text-veryDarkBlue  relative lg:after:bg-customOrange   after:transition-wi transition-all duration-300 nav-list hover:after:w-full">
+              Men</li>
+            <li
+              class="hover:text-veryDarkBlue relative lg:after:bg-customOrange  transition-all duration-300 nav-list hover:after:w-full">
+              Women</li>
+            <li
+              class="hover:text-veryDarkBlue relative lg:after:bg-customOrange  transition-all duration-300 nav-list hover:after:w-full">
+              About</li>
+            <li
+              class="hover:text-veryDarkBlue relative lg:after:bg-customOrange  transition-all duration-300 nav-list hover:after:w-full">
+              Contact</li>
+          </ul>
+        </div>
+
+      </div>
+      <div class="flex justify-center items-center lg:gap-12 gap-5">
+        <button>
+          <img src="../images/icon-cart.svg" alt="cart icon cursor-pointer ">
+        </button>
+        <img src="../images/image-avatar.png" alt="person avatar"
+          class="w-8 lg:w-10 hover:ring-2 hover:ring-customOrange rounded-full transition-all duration-300 cursor-pointer">
+      </div>
+    </nav>
+  </header>
+
+  <main
+    class="flex max-w-[1100px] mb-10 flex-col lg:flex-row lg:px-10  mx-auto lg:mt-10 items-center justify-between lg:gap-[8rem] ">
+    <section class=" w-full">
+      <div class="flex relative flex-col w-full  gap-4 ">
+        <div id="open-modal"
+          class="relative cursor-pointer flex h-[20rem]  lg:h-[22rem] lg:rounded-2xl overflow-hidden   w-full">
+          <img src="../images/image-product-1.jpg" alt="product image" class="product hidden w-full object-cover">
+          <img src="../images/image-product-2.jpg" alt="product image" class="product hidden w-full object-cover">
+          <img src="../images/image-product-3.jpg" alt="product image" class="product hidden w-full object-cover">
+          <img src="../images/image-product-4.jpg" alt="product image" class="product hidden w-full object-cover">
+        </div>
+        <div class="hidden lg:flex w-full justify-between ">
+          <figure tabindex="0"
+            class="thumnail cursor-pointer  w-[5rem]  h-[5rem] overflow-hidden rounded-2xl after:contents-[''] after:absolute relative after:inset-0 hover:after:bg-opacity-40  after:bg-opacity-0 focus:after:bg-opacity-60 after:transition-all after:duration-300 focus:after:block [&:where(.current)]:ring-[3px] [&:where(.current)]:ring-customOrange  [&:where(.current)]:after:bg-opacity-60 focus:ring-[3px] focus:ring-customOrange   outline-none after:bg-lightGrayishBlue">
+            <img src="../images/image-product-1-thumbnail.jpg" alt=" product thumbnail" class="w-full object-cover  ">
+          </figure>
+          <figure tabindex="0"
+            class="thumnail cursor-pointer  w-[5rem]  h-[5rem] overflow-hidden rounded-2xl after:contents-[''] after:absolute relative after:inset-0 hover:after:bg-opacity-40  after:bg-opacity-0 focus:after:bg-opacity-60 after:transition-all after:duration-300 focus:after:block [&:where(.current)]:ring-[3px] [&:where(.current)]:ring-customOrange  [&:where(.current)]:after:bg-opacity-60 focus:ring-[3px] focus:ring-customOrange   outline-none after:bg-lightGrayishBlue">
+            <img src="../images/image-product-2-thumbnail.jpg" alt=" product thumbnail" class="w-full object-cover  ">
+          </figure>
+          <figure tabindex="0"
+            class="thumnail cursor-pointer  w-[5rem]  h-[5rem] overflow-hidden rounded-2xl after:contents-[''] after:absolute relative after:inset-0 hover:after:bg-opacity-40  after:bg-opacity-0 focus:after:bg-opacity-60 after:transition-all after:duration-300 focus:after:block [&:where(.current)]:ring-[3px] [&:where(.current)]:ring-customOrange  [&:where(.current)]:after:bg-opacity-60 focus:ring-[3px] focus:ring-customOrange   outline-none after:bg-lightGrayishBlue">
+            <img src="../images/image-product-3-thumbnail.jpg" alt=" product thumbnail" class="w-full object-cover  ">
+          </figure>
+          <figure tabindex="0"
+            class="thumnail cursor-pointer w-[5rem]  h-[5rem] overflow-hidden rounded-2xl after:contents-[''] after:absolute relative after:inset-0 hover:after:bg-opacity-40  after:bg-opacity-0 focus:after:bg-opacity-60 after:transition-all after:duration-300 focus:after:block [&:where(.current)]:ring-[3px] [&:where(.current)]:ring-customOrange  [&:where(.current)]:after:bg-opacity-60 focus:ring-[3px] focus:ring-customOrange   outline-none after:bg-lightGrayishBlue">
+            <img src="../images/image-product-4-thumbnail.jpg" alt=" product thumbnail" class="w-full object-cover  ">
+          </figure>
+        </div>
+
+        <div class="absolute select-none top-36 flex lg:hidden justify-between items-center w-full px-5">
+          <figure name="previous" class="w-12 h-12 slide-btn bg-customwhite rounded-full grid place-content-center">
+            <svg width="12" height="18" class="">
+              <use href="../images/icon-previous.svg#previous"></use>
+            </svg>
+          </figure>
+          <figure name="next" class="w-12 h-12 slide-btn bg-customwhite rounded-full grid place-content-center">
+            <svg width="12" height="18" class="">
+              <use href="../images/icon-previous.svg#previous"></use>
+            </svg>
+          </figure>
+        </div>
+      </div>
+
+      <div id="modal"
+        class="absolute select-none  hidden  inset-0 bg-opacity-60  items-center justify-center   z-50 bg-blackOpacity">
+        <div class="flex relative flex-col w-[26rem]  gap-4 ">
+          <div class="relative">
+            <div class="relative flex h-[20rem]  lg:h-[26rem]   w-full">
+              <img src="../images/image-product-1.jpg" alt="product image"
+                class="product2 lg:rounded-2xl  hidden w-full object-cover">
+              <img src="../images/image-product-2.jpg" alt="product image"
+                class="product2 lg:rounded-2xl  hidden w-full object-cover">
+              <img src="../images/image-product-3.jpg" alt="product image"
+                class="product2 lg:rounded-2xl  hidden w-full object-cover">
+              <img src="../images/image-product-4.jpg" alt="product image"
+                class="product2 lg:rounded-2xl  hidden w-full object-cover">
+            </div>
+
+
+            <svg id="close-modal" width="19" height="25"
+              class="absolute cursor-pointer -top-10  right-0 text-customOrange">
+              <use href="../images/icon-close.svg#close"></use>
+            </svg>
+
+
+
+          </div>
+
+          <!-- thumbnails -->
+
+          <div class="hidden lg:flex  w-[calc(100%-50px)] mx-auto justify-between ">
+            <figure tabindex="0"
+              class="thumnail2 cursor-pointer  w-20  h-20 overflow-hidden rounded-2xl after:contents-[''] after:absolute relative after:inset-0 hover:after:bg-opacity-40  after:bg-opacity-0 focus:after:bg-opacity-60 after:transition-all after:duration-300 focus:after:block [&:where(.current)]:ring-[3px] [&:where(.current)]:ring-customOrange  [&:where(.current)]:after:bg-opacity-60 focus:ring-[3px] focus:ring-customOrange   outline-none after:bg-lightGrayishBlue">
+              <img src="../images/image-product-1-thumbnail.jpg" alt=" product thumbnail" class="w-full object-cover  ">
+            </figure>
+            <figure tabindex="0"
+              class="thumnail2 cursor-pointer  w-20  h-20 overflow-hidden rounded-2xl after:contents-[''] after:absolute relative after:inset-0 hover:after:bg-opacity-40  after:bg-opacity-0 focus:after:bg-opacity-60 after:transition-all after:duration-300 focus:after:block [&:where(.current)]:ring-[3px] [&:where(.current)]:ring-customOrange  [&:where(.current)]:after:bg-opacity-60 focus:ring-[3px] focus:ring-customOrange   outline-none after:bg-lightGrayishBlue">
+              <img src="../images/image-product-2-thumbnail.jpg" alt=" product thumbnail" class="w-full object-cover  ">
+            </figure>
+            <figure tabindex="0"
+              class="thumnail2 cursor-pointer  w-20  h-20 overflow-hidden rounded-2xl after:contents-[''] after:absolute relative after:inset-0 hover:after:bg-opacity-40  after:bg-opacity-0 focus:after:bg-opacity-60 after:transition-all after:duration-300 focus:after:block [&:where(.current)]:ring-[3px] [&:where(.current)]:ring-customOrange  [&:where(.current)]:after:bg-opacity-60 focus:ring-[3px] focus:ring-customOrange   outline-none after:bg-lightGrayishBlue">
+              <img src="../images/image-product-3-thumbnail.jpg" alt=" product thumbnail" class="w-full object-cover  ">
+            </figure>
+            <figure tabindex="0"
+              class="thumnail2 cursor-pointer w-20  h-20 overflow-hidden rounded-2xl after:contents-[''] after:absolute relative after:inset-0 hover:after:bg-opacity-40  after:bg-opacity-0 focus:after:bg-opacity-60 after:transition-all after:duration-300 focus:after:block [&:where(.current)]:ring-[3px] [&:where(.current)]:ring-customOrange  [&:where(.current)]:after:bg-opacity-60 focus:ring-[3px] focus:ring-customOrange   outline-none after:bg-lightGrayishBlue">
+              <img src="../images/image-product-4-thumbnail.jpg" alt=" product thumbnail" class="w-full object-cover  ">
+            </figure>
+          </div>
+
+          <!-- next and previous button -->
+
+          <div class="absolute top-[35%] flex  justify-between items-center w-full ">
+            <div class="relative w-full">
+              <figure name="previous"
+                class="slide-btn2 w-12 h-12 group absolute -left-6 cursor-pointer bg-customwhite rounded-full grid place-content-center">
+
+                <!-- <img src="../images/icon-previous.svg" alt=""> -->
+
+                <svg width="12" height="18" class="group-hover:text-customOrange">
+                  <use href="../images/icon-previous.svg#previous"></use>
+                </svg>
+
+              </figure>
+              <figure name="next"
+                class="slide-btn2 w-12 group h-12 bg-customwhite cursor-pointer absolute -right-6 rounded-full grid place-content-center">
+
+
+
+                <svg width="13" height="18" class=" group-hover:text-customOrange">
+                  <use href="../images/icon-next.svg#next"></use>
+                </svg>
+
+              </figure>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="px-7 mt-5">
+      <h1 class="text-xl tracking-widest font-medium text-darkGrayishBlue mb-5">Sneaker Company</h1>
+
+      <h2 class="lg:text-4xl text-3xl font-bold text-veryDarkBlue lg:mb-8 mb-5 ">Fall Limited Edition Sneakers</h2>
+
+      <p class="text-[1.1rem] text-darkGrayishBlue mb-5"> These low-profile sneakers are your perfect casual wear
+        companion.
+        Featuring a
+        durable rubber outer sole, they’ll withstand everything the weather can offer.</p>
+
+      <div class="mb-5 flex lg:flex-col items-center lg:items-start justify-between">
+        <p class="flex items-center space-y-2">
+          <span class="text-3xl product-price font-bold "></span>
+          <span class="bg-blackOpacity text-customwhite text-sm ml-3 px-2 py-1 rounded-lg">50%</span>
+        </p>
+        <p class="line-through text-darkGrayishBlue font-medium">$250.00</p>
+      </div>
+
+
+      <div class="flex items-center gap-4 lg:gap-9 lg:flex-row flex-col">
+        <div
+          class=" w-full flex items-center justify-between lg:w-40  bg-lightGrayishBlue py-4 lg:py-3 px-4 rounded-lg">
+
+          <svg width="12" height="12" class="add-quantity text-customOrange hover:opacity-50 mt-2 cursor-pointer block  font-bold">
+            <use href="../images/icon-minus.svg#minus"></use>
+          </svg>
+
+          <p class="quantity text-xl"></p>
+
+
+          <svg  width="12" height="12" class="add-quantity text-customOrange hover:opacity-50 block cursor-pointer font-bold ">
+            <use href="../images/icon-plus.svg#plus"></use>
+          </svg>
+        </div>
+        <button id="add-cart-btn"
+          class="flex w-full items-center justify-center px-8 py-4  lg:py-3 flex-1 bg-customOrange gap-5 rounded-lg font-semibold fill-customOrange">
+          <img src="../images/icon-cart.svg" alt="cart icon" class="fill-red-900">
+          <span> Add to cart</span>
+        </button>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="index.js"></script>
+</body>
+
+</html>

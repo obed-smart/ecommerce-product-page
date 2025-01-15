@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer {
+  /* *>*>*>*{
+    outline: 2px solid red;
+  } */
+
+  html {
+    font-family: "Kumbh Sans", serif;
+  }
+  .nav-list::after {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 0;
+    height: 3px;
+    bottom: -30px;
+    transition: all 0.2s linear;
+  }
+}
