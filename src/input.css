@@ -19,4 +19,24 @@
     bottom: -30px;
     transition: all 0.2s linear;
   }
+
+  .cart {
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  .show-cart {
+    animation: show 0.9s ease;
+    visibility: visible;
+    pointer-events: all;
+  }
+
+  @keyframes show {
+    from {
+      transform: scale(0);
+    }
+    to {
+      transform: scale(1);
+    }
+  }
 }
