@@ -12,10 +12,12 @@ const thumbnails2 = document.querySelectorAll(".thumnail2");
 const slideButton = document.querySelectorAll(".slide-btn");
 const slideButton2 = document.querySelectorAll(".slide-btn2");
 const addQuantityButton = document.querySelectorAll(".add-quantity");
+const navLists = document.querySelectorAll(".nav-list");
 const productQuantity = document.querySelector(".quantity");
 const productPrice = document.querySelector(".product-price");
 const cartButton = document.querySelector(".cart-icon");
 const cartContainer = document.querySelector(".cart");
+const overlay = document.querySelector(".overlay");
 
 let quantity = 1;
 let price = 125;
@@ -34,6 +36,16 @@ openMenu.addEventListener("click", () => {
 
 // close mobile menu
 closeMenu.addEventListener("click", () => {
+  menu.classList.remove("open");
+});
+
+navLists.forEach((list) => {
+  list.addEventListener("click", () => {
+    menu.classList.remove("open");
+  });
+});
+
+overlay.addEventListener("click", () => {
   menu.classList.remove("open");
 });
 
@@ -82,15 +94,9 @@ function addToCart(e) {
   const productCartQuantity = Number(productQuantity.textContent);
   const productTotalPrice = productCartPrice * productCartQuantity;
 
-  if (cart[productId]) {
-    cart[productId].productCartQuantity += Number(productQuantity.textContent);
-    cart[productId].productTotalPrice =
-      cart[productId].productCartQuantity * productCartPrice;
-    displayCart();
-  }
-
   if (!cart[productId]) {
     cart[productId] = {
+      productId,
       productIMage,
       productName,
       productCartPrice,
@@ -99,34 +105,64 @@ function addToCart(e) {
     };
   }
 
-  quantity = 1;
   document.querySelector(".cart-list").classList.remove("empty");
   updateQuantityAndPrice();
   displayCart();
   cartMessage();
 }
 
-// console.log(cart);
+function updateCartProduct(e) {
+  const productId = e.currentTarget.parentNode.parentNode.parentNode.dataset.id;
+
+  if (e.currentTarget.parentElement.children[0]) {
+    console.log(e.currentTarget.parentElement.children[0]);
+  }
+
+  if (e.currentTarget.parentElement.children[2]) {
+    console.log(e.currentTarget.parentElement.children[0]);
+  }
+}
+
+// increment and decrement the quantity
 
 addQuantityButton.forEach((button, index) => {
-  button.addEventListener("click", () => {
-    if (index === 0 && quantity > 1) {
-      quantity--;
-      updateQuantityAndPrice();
+  button.addEventListener("click", (e) => {
+    const productId =
+      e.currentTarget.parentNode.parentNode.parentNode.dataset.id;
+
+    if (index === 0) {
+      if (quantity > 1) {
+        quantity--;
+
+        if (cart[productId]) {
+          cart[productId].productCartQuantity -= 1;
+          cart[productId].productTotalPrice =
+            cart[productId].productCartQuantity * price;
+        }
+      }
     }
 
     if (index === 1) {
       quantity++;
-      updateQuantityAndPrice();
+
+      if (cart[productId]) {
+        cart[productId].productCartQuantity += 1;
+        cart[productId].productTotalPrice =
+          cart[productId].productCartQuantity * price;
+      }
     }
+    updateQuantityAndPrice();
+    displayCart();
+    cartMessage();
   });
 });
 
 // add product to the cart
 addButton.addEventListener("click", (e) => {
-  const productId = e.currentTarget.parentNode.parentNode.dataset.id;
-
+  const product = e.currentTarget.parentNode;
   addToCart(e);
+  product.classList.add("clicked");
+  e.currentTarget.disabled = true;
 });
 
 // display cart notification
@@ -157,7 +193,7 @@ function displayCart() {
   for (const item of Object.values(cart)) {
     product = `<div data-id="${item.productId}" class=" relative mt-3 lg:mt-2">
   <div class="flex gap-4 items-center ">
-    <img src="../images/image-product-1.jpg" alt="" class="w-16 aspect-square rounded-lg lg:w-14">
+    <img src="./images/image-product-1.jpg" alt="" class="w-16 cursor-not-allowed  aspect-square rounded-lg lg:w-14">
     <div class="space-y-2">
       <h1 class="text-[1.1rem] text-darkGrayishBlue font-bold">${item.productName}</h1>
       <p class="text-xl">
@@ -166,23 +202,25 @@ function displayCart() {
         <span class="text-veryDarkBlue font-bold">$${item.productTotalPrice}.00</span>
       </p>
     </div>
-    <img id="delete-cart-btn" src="../images/icon-delete.svg" alt="" class="absolute cursor-pointer right-0 top-10 w-4">
+    <img id="delete-cart-btn" src="./images/icon-delete.svg" alt="" class="absolute cursor-pointer right-0 top-10 w-4">
   </div>
   <button id="checkout-btn"   class="w-full lg:mt-4 lg:py-2 lg:text-xl mt-8 text-2xl font-semibold bg-customOrange py-4 rounded-lg">
     Checkout
   </button>
   </div>`;
     cartList.innerHTML = product;
-    deleteCartproduct(item, cartList);
+    deleteCartproduct();
   }
 
   const checkOutButton = document.getElementById("checkout-btn");
 
-  checkOutButton.addEventListener("click", () => {
-    setTimeout(() => {
-      location.reload();
-    }, 1000);
-  });
+  if (product) {
+    checkOutButton.addEventListener("click", () => {
+      setTimeout(() => {
+        location.reload();
+      }, 1000);
+    });
+  }
 }
 
 // slide to the clicked , next or previous product image
@@ -190,8 +228,8 @@ function displayCart() {
 function slideShow(index) {
   // return to the first index when the product reach last
 
-  if (index > products.length) slideIndex = 1;
-  if (index < 1) slideIndex = products.length;
+  if (index > products.length) slideIndex = products.length;
+  if (index < 1) slideIndex = 1;
 
   // hide the privious index of the product when moving to another
 
@@ -207,7 +245,7 @@ function slideShow(index) {
     thumbnails2[index].classList.remove("current");
   }
 
-  // display the first image and thumbnail of the product
+  // display the acive image and thumbnail of the product
 
   products[slideIndex - 1].style.display = "block";
   products2[slideIndex - 1].style.display = "block";
@@ -226,25 +264,27 @@ closeModal.addEventListener("click", () => {
   modal.classList.remove("lg:flex");
 });
 
-function deleteCartproduct(item, cartList) {
+function deleteCartproduct() {
   const deleteCartProductBtn = document.getElementById("delete-cart-btn");
-  const productsId = item.productId;
+  const emptyMg = document.querySelector(".cart-list");
 
   if (!deleteCartProductBtn) return;
 
-  const cartId = Object.keys(cart).find(
-    (item) => cart[item].productId === productsId
-  );
-  if (!cart[cartId]) return;
-  const emptyMg = document.querySelector(".cart-list");
-
   deleteCartProductBtn.addEventListener("click", (e) => {
+    const productId = Number(e.target.parentNode.parentNode.dataset.id);
+    const cartList = e.target.parentNode.parentNode.parentNode;
+
     cartList.innerHTML = `<p class="text-darkGrayishBlue group-[&:not(.empty)]:hidden  text-xl font-semibold">Your cart is empty</p>`;
+
     emptyMg.classList.add("empty");
 
     e.target.parentNode.parentNode.remove();
-    delete cart[cartId];
+    delete cart[productId];
+    addButton.parentNode.classList.remove("clicked");
+    addButton.disabled = false;
 
+    quantity = 1;
+    updateQuantityAndPrice();
     cartMessage();
   });
 }
